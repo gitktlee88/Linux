@@ -28,7 +28,7 @@ exit $?
 #!/bin/sh
 # Script to check tomcat server status and restarts if something wrong
 export LD_LIBRARY_PATH=/home/pcchrist/openssl/lib
-export CATALINA_HOME=/opt/tomcat/tomcat
+export CATALINA_HOME=/opttt/tomcat/tomcat
 
 SUBJECT=$1
 RECEIVER=$2
