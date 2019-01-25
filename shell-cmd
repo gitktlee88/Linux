@@ -1,3 +1,7 @@
+@ Extract "feeder.jar" to temp directory and modify some codes: /opt/java/jdk1.5/bin/jar -xvf feeder.jar
+  Add "manifest.txt" file which should end with Enter-key(/n)
+  Compress "feeder.jar" : /opt/java/jdk1.5/bin/jar -cvmf manifest.txt feeder.jar *
+  
 @ which shell type used
 > ps $$  or  echo $0  ,   ( uname –a ) ,   ( uname –r )
 
