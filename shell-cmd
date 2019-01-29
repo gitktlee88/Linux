@@ -67,10 +67,19 @@ MariaDB [mqhcv]> Ctr-C  to exit database.
 
 @ How to get size of mysql database?
 MariaDB [mqhcv]> 
-SELECT table_schema "DB Name",
-        ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "DB Size in MB" 
-FROM information_schema.tables 
-GROUP BY table_schema;
+To get a result in MB:
+SELECT
+SUM(ROUND(((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024), 2)) AS "SIZE IN MB"
+FROM INFORMATION_SCHEMA.TABLES
+WHERE
+TABLE_SCHEMA = "SCHEMA-NAME";
+
+To get a result in GB:
+SELECT
+SUM(ROUND(((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024 / 1024), 2)) AS "SIZE IN GB"
+FROM INFORMATION_SCHEMA.TABLES
+WHERE
+TABLE_SCHEMA = "SCHEMA-NAME";
 
 @ In order to migrate the database, there are two steps:
 
