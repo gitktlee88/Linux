@@ -64,3 +64,30 @@ MariaDB [(none)]> use mqhcv
 MariaDB [mqhcv]> show tables;
 MariaDB [mqhcv]> select * from CustomerCode;
 MariaDB [mqhcv]> Ctr-C  to exit database.
+
+@ In order to migrate the database, there are two steps:
+
+1, Step One—Perform a MySQL Dump:
+Before transferring the database file to the new VPS, we first need to back it up on the original virtual server 
+by using the mysqldump command.
+mysqldump -u root -p --opt [database name] > [database name].sql
+
+After the dump is performed, you are ready to transfer the database.
+
+2, Step Two—Copy the Database:
+SCP helps you copy the database. If you used the previous command, you exported your database to your home folder.
+The SCP command has the following syntax:
+scp [database name].sql [username]@[servername]:path/to/database/
+
+A sample transfer might look like this:
+scp newdatabase.sql user@example.com:~/
+
+After you connect, the database will be transferred to the new virtual private server.
+
+3, Step Three—Import the Database:
+Once the data has been transferred to the new server, you can import the database into MySQL:
+
+mysql -u root -p newdatabase < /path/to/newdatabase.sql
+
+With that, your transfer via SCP will be complete.
+
