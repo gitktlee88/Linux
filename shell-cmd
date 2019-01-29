@@ -49,6 +49,10 @@ if you want to be more eloquent, will empty logfile (actually they will truncate
 
 cat test.txt | tr '[:upper:]' '[:lower:]'    to convert  to lowercase in the test.txt file.
 
+///////////////////////////////////
+///////// MySQL(MariaDb) //////////
+///////////////////////////////////
+
 @ How to connect to mysql server on Linux
 [pklee1@m--sdp09 ~]$ /opt/mysql/mysql/bin/mysql -S/mysql/mysql.sock -u mqhcv -p
 
