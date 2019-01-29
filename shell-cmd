@@ -48,3 +48,15 @@ if you want to be more eloquent, will empty logfile (actually they will truncate
 > tail -n 20 test      : last 20 lines, <-c> 20 characters
 
 cat test.txt | tr '[:upper:]' '[:lower:]'    to convert  to lowercase in the test.txt file.
+
+@ How to connect to mysql server on Linux
+[pklee1@m--sdp09 ~]$ /opt/mysql/mysql/bin/mysql -S/mysql/mysql.sock -u mqhcv -p
+
+@ How to find if mysql port 3306 is running?
+[pklee1@m--sdp09 ~]$ ps ax | grep 3306
+
+MariaDB [(none)]> status
+MariaDB [(none)]> use mqhcv
+MariaDB [mqhcv]> show tables;
+MariaDB [mqhcv]> select * from CustomerCode;
+MariaDB [mqhcv]> Ctr-C  to exit database.
