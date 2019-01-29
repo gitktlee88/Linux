@@ -40,7 +40,7 @@ touch ---- create multiple files with a single line text at one command.
 if you want to be more eloquent, will empty logfile (actually they will truncate it to zero size).
 > cat /dev/null > logfile
 
-> cat bar.txt >> foo.txt       ....   to append a contains of bar.txt to to foo.txt
+  cat bar.txt >> foo.txt       ....   to append a contains of bar.txt to to foo.txt
 > echo 'text to append' >> file2
 > printf "text to append\n" >> fileName
 
@@ -66,14 +66,11 @@ MariaDB [mqhcv]> select * from CustomerCode;
 MariaDB [mqhcv]> Ctr-C  to exit database.
 
 @ How to get size of mysql database?
-MariaDB [mqhcv]> SELECT table_schema "DB Name",
-    ->         ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "DB Size in MB"
-    -> FROM information_schema.tables
-    -> GROUP BY table_schema;
-
-
-
-
+MariaDB [mqhcv]> 
+SELECT table_schema "DB Name",
+        ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "DB Size in MB" 
+FROM information_schema.tables 
+GROUP BY table_schema;
 
 @ In order to migrate the database, there are two steps:
 
