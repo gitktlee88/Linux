@@ -98,3 +98,29 @@ mysql -u root -p newdatabase < /path/to/newdatabase.sql
 
 With that, your transfer via SCP will be complete.
 
+@ How to create table if not exist.
+create database if not exists `test`;
+
+USE `test`;
+
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+
+/*Table structure for table `test` */
+
+***CREATE TABLE IF NOT EXISTS `tblsample` (
+  `id` int(11) NOT NULL auto_increment,   
+  `recid` int(11) NOT NULL default '0',       
+  `cvfilename` varchar(250)  NOT NULL default '',     
+  `cvpagenumber`  int(11) NULL,     
+  `cilineno` int(11)  NULL,    
+  `batchname`  varchar(100) NOT NULL default '',
+  `type` varchar(20) NOT NULL default '',    
+  `data` varchar(100) NOT NULL default '',
+   PRIMARY KEY  (`id`)
+);***
+
+@ How to add columns
+ALTER TABLE `SCHEMANAME`.`TABLE1` 
+ADD COLUMN `FK_COLUMN` BIGINT(20) NOT NULL, 
+ADD CONSTRAINT `FK_TABLE2_COLUMN` FOREIGN KEY (`FK_COLUMN`) 
+REFERENCES `SCHEMANAME`.`TABLE2`(`PK_COLUMN`);
