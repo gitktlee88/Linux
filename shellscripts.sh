@@ -27,8 +27,10 @@ exit $?
 
 #!/bin/sh
 # Script to check tomcat server status and restarts if something wrong
-#sudo -u tomcat-cxi -i
-export LD_LIBRARY_PATH=/home/pcchrist/openssl/lib
+
+#export LD_LIBRARY_PATH=/home/pcchrist/openssl/lib
+#export CATALINA_HOME=/opt/tomcat/tomcat
+export LD_LIBRARY_PATH=/opt/tomcat/scripts/openssl/lib
 export CATALINA_HOME=/opt/tomcat/tomcat
 
 SUBJECT=$1
@@ -39,7 +41,7 @@ HOSTNAME=$HOSTNAME
 SENDER=$(whoami)
 
 [[ -z $1 ]] && SUBJECT="Notification from $HOSTNAME"
-[[ -z $2 ]] && RECEIVER="kyung.lee@amadeus.com"
+[[ -z $2 ]] && RECEIVER="kyung.lee@xdeus.com"
 TEXT="tomcat is restarting."
 
 
@@ -49,7 +51,8 @@ repok=$(echo "$rep" | grep OK)
 #echo $repok
 
 if [ -n "$repok" ]; then
-  #echo "OK!"
+  echo "OK!"
+  date +"%m-%d-%y"
   #PS_OUTPUT=`cat $CATALINA_HOME/work/catalina.pid`
   #echo $PS_OUTPUT
 else
