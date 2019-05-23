@@ -14,7 +14,8 @@
 편집
  u     - undo the last modifiction.
  yy    - 커서가 위치한 라인 전체 copy
- 숫자yy  - 커서 아래로 숫자만큼의 라인 수 copy
+ 숫자yy  - 커서 아래로 숫자만큼의 라인 copy
+ 숫자dd  - 커서 아래로 숫자만큼의 라인 delete
  yw    - 커서가 있는 단어 copy
  y$    - 커서부터 라인 끝까지 copy
  y^    - 커서부터 라인 처음까지 copy
