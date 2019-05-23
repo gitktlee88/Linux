@@ -1,0 +1,31 @@
+SUDO
+ 사용목적 : 관리자(root)가 특정 사용자(특정 그룹)에게 특정 명령(명령그룹)을 root계정으로 실행할 수 있는 
+ 권한부여
+ 
+* 구성파일 : /etc/sudoers 
+1. (유저, 호스트, 커멘드)를 정의 가능. 
+2. (유저, 호스트, 커멘드)의 알리어스도 지정 가능 
+3. 구조 
+user host=commads 
+user : 로그인 id나 알리어스 네임 
+host : hostname, 알리어스 호스트네임 
+commads : 콤마로 구분되어지는 명령어 리스트 
+ 
+사용법을 간단히 알아보자.   
+# rpm -q sudo 를 실행하여 sudo가 설치되어 있는지 확인하자.
+# vi /etc/sudoers 설정파일을 열어서 
+root ALL=(ALL) ALL 
+bob ALL=/usr/local/resin/bin/httpd.sh, /usr/local/apache/bin/apachectl  
+ 
+일반 계정자 bob에게 resin의 httpd.sh 명령과 apachectl 명령 권한을 허용한 예이다. 
+이제 일반계정 bob으로 위의 명령을 실행하려면 
+
+# su bob 
+$ sudo /usr/local/apache/bin/apachectl restart 
+
+이때 password를 물어보면 bob의 password를 입력하면 root권한으로 실행이 된다. 
+ 
+풀이방법 
+ vi /etc/sudoers       ->sudoers파일 편집
+ user_admin      ALL=/usr/sbin/useradd      -> user_admin 에게 /usr/sbin/useradd 권한 설정
+ 
