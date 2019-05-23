@@ -1,0 +1,16 @@
+If you want to read a file, and write it to another file, doing search/replace as you go, 
+- use sed:
+
+sed 's/abc/XYZ/g' <infile >outfile
+
+If you want to edit the file in place 
+(as if opening the file in an editor, editing it, then saving it) 
+supply instructions to the line editor 'ex'
+
+echo "%s/abc/XYZ/g
+w
+q
+" | ex file
+
+'ex' is like 'vi' without the fullscreen mode. 
+You can give it the same commands you would at vi's ':' prompt.
