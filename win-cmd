@@ -1,0 +1,5 @@
+<> command to move the folder to another drive:
+robocopy C:\Windows\Installer D:\Windows\Installer /MOVE /e
+
+<> create a "Junction" link for the missing folder:
+mklink /J C:\Windows\Installer D:\Windows\Installer
