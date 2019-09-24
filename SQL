@@ -1,0 +1,17 @@
+--------------------------------
+If I had to update millions of records I would probably opt to NOT update.
+I would more likely do:
+
+CREATE TABLE new_table as select <do the update "here"> from old_table;
+
+> create table new_emp as
+select empno, LOWER(ename) ename, JOB,
+MGR, HIREDATE, SAL, COMM, DEPTNO
+from emp;
+=> Table created.
+
+> drop table emp;
+=> Table dropped.
+
+> rename new_emp to emp;
+=> Table renamed. 
