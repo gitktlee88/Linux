@@ -81,20 +81,43 @@ ADD COLUMN `FK_COLUMN` BIGINT(20) NOT NULL,
 ADD CONSTRAINT `FK_TABLE2_COLUMN` FOREIGN KEY (`FK_COLUMN`) 
 REFERENCES `SCHEMANAME`.`TABLE2`(`PK_COLUMN`);
 
---------------------------------
+----------------------------------------------------------------------------
 @ If I had to update millions of records I would probably opt to NOT update.
 I would more likely do:
-
+-----------------------
 CREATE TABLE new_table as select <do the update "here"> from old_table;
-
-> create table new_emp as
+> CREATE TABLE new_emp as
 select empno, LOWER(ename) ename, JOB,
 MGR, HIREDATE, SAL, COMM, DEPTNO
 from emp;
 => Table created.
-
-> drop table emp;
-=> Table dropped.
-
-> rename new_emp to emp;
+> DROP TABLE emp;
+=> Table deleted.
+> RENAME new_emp to emp;
 => Table renamed. 
+--------------------------
+
+@ Create a table
+> CREATE TABLE person(
+        ID INT NOT NULL,
+        Name CHAR(32)
+        );
+
+@ Insert and update a table
+> INSERT INTO Person VALUES ('1', 'Smith');
+> UPDATE Person
+        SET Name = 'Anderson'
+        WHERE ID = 1;
+
+@ Delete and drop a table
+> DELETE FROM Person
+        WHERE ID = 1;
+        
+@ Change a table structure
+  add new column
+> ALTER TABLE Person
+        ADD new;
+  delete old column
+> ALTER TABLE Person
+        DROP COLUMN old;
+        
