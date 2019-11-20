@@ -58,28 +58,6 @@ create database if not exists `test`;
 
 USE `test`;
 
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-
-/*Table structure for table `test` */
-
-***CREATE TABLE IF NOT EXISTS `tblsample` (
-  `id` int(11) NOT NULL auto_increment,   
-  `recid` int(11) NOT NULL default '0',       
-  `cvfilename` varchar(250)  NOT NULL default '',     
-  `cvpagenumber`  int(11) NULL,     
-  `cilineno` int(11)  NULL,    
-  `batchname`  varchar(100) NOT NULL default '',
-  `type` varchar(20) NOT NULL default '',    
-  `data` varchar(100) NOT NULL default '',
-   PRIMARY KEY  (`id`)
-);***
-
-
-@ How to add columns
-ALTER TABLE `SCHEMANAME`.`TABLE1` 
-ADD COLUMN `FK_COLUMN` BIGINT(20) NOT NULL, 
-ADD CONSTRAINT `FK_TABLE2_COLUMN` FOREIGN KEY (`FK_COLUMN`) 
-REFERENCES `SCHEMANAME`.`TABLE2`(`PK_COLUMN`);
 
 ----------------------------------------------------------------------------
 @ If I had to update millions of records I would probably opt to NOT update.
@@ -97,27 +75,144 @@ from emp;
 => Table renamed. 
 --------------------------
 
-@ Create a table
-> CREATE TABLE person(
-        ID INT NOT NULL,
-        Name CHAR(32)
-        );
 
-@ Insert and update a table
-> INSERT INTO Person VALUES ('1', 'Smith');
-> UPDATE Person
-        SET Name = 'Anderson'
-        WHERE ID = 1;
 
-@ Delete and drop a table
-> DELETE FROM Person
-        WHERE ID = 1;
-        
-@ Change a table structure
-  add new column
-> ALTER TABLE Person
-        ADD new;
-  delete old column
-> ALTER TABLE Person
-        DROP COLUMN old;
-        
+
+                <  SQL Commands >
+
+   DDL          DML         DCL        TCL       Constraints
+definition  manipulation  control  transaction
+
+|- create    |- select    |- grant  |-commit     |- primaryKey
+|- alter     |- insert    |- revoke |-rollback   |- foreignKey
+|- drop      |- update    |-        |-save point |- check
+|- truncate  |- delete    |-        |-           |- unique
+|- rename    |-           |-        |-           |- default
+|-           |-           |-        |-           |- not null
+  [table]
+[structure]
+
++--------+---------+-------+--------+---------+--------+
+> mysql --user=your-user-name --password=your-password
+or
+> mysql -u your-user-name -p'Your-password' -h your-hostname
+
+> show databases;
+> use mysql;
+> show tables;
++--------+---------+-------+--------+---------+--------+
+
+> CREATE TABLE employee (emp_id INT, fname VARCHAR(25),
+lname VARCHAR(25), gender CHAR, dept_id INT, salary INT,
+PRIMARY KEY(emp_id)
+);
+
+> CREATE TABLE department(id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(25));
+
+> DESCRIBE employee;
+
+> ALTER TABLE employee MODIFY emp_id INT PRIMARY KEY;
+> ALTER TABLE employee ADD gpa DECIMAL(3,2);
+
+> ALTER TABLE department change name dept_name varchar(25);
+> ALTER TABLE TABLE_NAME ADD INDEX (COLUMN_NAME);
+
+> DROP DATABASE test;
+> DROP TABLE new_emp_tbl;
+> RENAME TABLE employee1 TO employee;
+> TRUNCATE TABLE employee2;
+
+> CREATE TABLE new_table AS (SELECT * FROM old_table);
+
+> CREATE TABLE employee2
+AS (SELECT *
+FROM employee
+WHERE id > 1000);
+
+
+employee table
++--------+---------+-------+--------+---------+--------+
+| emp_id | fname   | lname | gender | dept_id | salary |
++--------+---------+-------+--------+---------+--------+
+|   2002 | Supe    | Man   | M      |       1 |  75000 |
+|   2003 | Jane    | Mary  | F      |       2 |  50000 |
+|   2004 | Kelly   | Kim   | M      |       1 |  55000 |
+|   2005 | John    | Park  | M      |       2 |  80000 |
+|   2006 | Kimm    | Lee   | F      |       2 |  90000 |
+|   2007 | Say     | Yes   | M      |       1 |  70000 |
+|   2008 | JunHo   | Lee   | M      |       3 |  80000 |
+|   2009 | GwangHo | Lee   | M      |       5 |  80000 |
+|   2010 | KJun    | Lee   | F      |       3 |  30000 |
+|   2011 | Hoya    | Lee   | F      |       3 |  40000 |
++--------+---------+-------+--------+---------+--------+
+
+
+> INSERT INTO employee
+(emp_id, fname, lname, gender, dept_id, salary)
+VALUES(2008, 'JunHo', 'Lee', 'M', 3, 80000);
+
+> UPDATE employee
+SET lname = 'Lee', salary = 75000
+WHERE salary = 65000 AND fname = 'GwangHo';
+
+> UPDATE employee
+SET salary = (SELECT salary
+   FROM employee2
+   WHERE employee.fname = 'Kimm')
+WHERE EXISTS (SELECT salary
+   FROM employee2
+   WHERE employee2.fname = 'Kimm');
+
+> SELECT dept_id, SUM(salary) AS total_salaries
+FROM employee
+GROUP BY dept_id;
+
+> SELECT dept_id, COUNT(*) AS high_salary
+FROM employee
+WHERE salary is NOT NULL AND salary > 60000
+GROUP BY dept_id
+ORDER BY dept_id;
+
+> SELECT dept_id, MAX(salary) AS highest_salary
+FROM employee
+GROUP BY dept_id;
+
+> SELECT dept_id, AVG(salary) AS average_salary
+FROM employee
+WHERE salary is NOT NULL
+GROUP BY dept_id
+ORDER BY AVG(salary) DESC;
+
+/* return employee record with max salary */
+SELECT *
+FROM employee
+WHERE salary = (select Max(salary) from employee);
+
+/* select the highest salary in employee */
+SELECT Max(salary)
+FROM employee;
+
+/* select 2nd highest salary in employee */
+SELECT Max(salary)
+FROM employee
+WHERE salary Not In (select Max(salary) from employee);
+
+/* select range of employee based on id */
+SELECT *
+FROM employee
+Where emp_id between 2004 and 2007;
+
+/* return employee name, highest salary and department */
+SELECT e.fname, e.lname, e.salary, d.dept_name
+FROM employee e Inner Join department d
+ON (e.dept_id = d.dept_id)
+where salary IN (select Max(salary) from employee);
+
+/* return employee name, highest salary and department
+   for each department*/
+SELECT e.fname, e.lname, e.salary, d.dept_name
+FROM employee e Inner Join department d
+ON (e.dept_id = d.dept_id)
+where salary IN (select Max(salary) from employee
+group by dept_id);
