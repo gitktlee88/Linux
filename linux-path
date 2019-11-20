@@ -7,17 +7,25 @@ Shell 상에서 'export $PATH' 라고 입력하면 현재의 패스가 걸린 �
  ./를 붙여서 ./xxxx 라고 실행. 
   
 3. 만일 패스를 추가해주고 싶다면 자신의 홈디렉토리의 .bash_profile을 에디트하면 된다. 
-vi ~/.bash_profile 
+ vi ~/.bash_profile 
    
-'PATH=$PATH:$HOME/bin' 부분에서 콜론(:)으로 구분하여 덧붙이면 된다. 
-'/usr/local/bin'을 추가해주고 싶으면 PATH=$PATH:$HOME/bin:/usr/local/bin 이렇게 해주고 저장을 하고 
-나온 후 'source ~/.bash_profile' 이라고 치면 고친 설정이 바로 적용된다. 
+ 'PATH=$PATH:$HOME/bin' 부분에서 콜론(:)으로 구분하여 덧붙이면 된다. 
+ '/usr/local/bin'을 추가해주고 싶으면 PATH=$PATH:$HOME/bin:/usr/local/bin 이렇게 해주고 
+ 저장을 하고 나온 후 
+ 'source ~/.bash_profile' 이라고 치면 고친 설정이 바로 적용된다. 
 
  (참고)    #env : 모든 설정된 패스를 볼 수 있다.
 
+or,
+    # add mysql path in the current PATH.
+    echo 'export PATH=/usr/local/mysql/bin:$PATH' >> ~/.bash_profile
+    # run my bash_profile to apply the change.
+    . ~/.bash_profile
+    
 4. 리눅스의 환경변수 관련 모음
     export 명령어를 이용해서 환경변수를 확인 및 수정할수 있다.
     export    ▶  환경변수 리스트를 보여준다.
     export 변수명=변수값    ▶  해당 변수명에 변수값을 등록한다.
     echo $변수명    ▶  변수명에 해당하는 환경변수값을 보여준다.
     export 변수명=$변수명:변수값    ▶  변수명에 변수값을 추가한다 
+
