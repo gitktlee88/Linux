@@ -75,7 +75,24 @@ from emp;
 => Table renamed. 
 --------------------------
 
+- Normalization? -
+It is a systematic approach of decomposing tables to eliminate data
+redundancy(repetition) and undesirable characteristics
+like Insertion, Update and Deletion Anomalies.
 
+1NF: - to avoid redundancy by breaking down the table.
+    - to be Atomic like User table.
+         user_id, fn, ln, email, address
+
+2NF: - (should be in 1NF) and to remove partial dependency with composit keys.
+
+3NF: - (should be in 1NF, 2NF) and to remove transitive dependency.
+    - it simplyfy the queries.
+
+- Data Warehousing? -
+A data warehouse is a copy of transaction data specifically structured
+for query and analysis. The purpose of database warehousing is to provide aggregate data 
+which is suitable for decision making.
 
 
                 <  SQL Commands >
