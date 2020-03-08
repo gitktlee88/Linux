@@ -26,7 +26,11 @@ find 커맨드로 /etc 디렉토리에서 type이 파일인것들을 찾아서 -
 > mv test.txt before-test.txt      
 
 : home 디렉토리를 삭제 (subdir 포함)
-> rm -r home/     
+> rm -r home/    
+:First change permission of directory that you want to delete by using command :
+  chmod -R 777 directory/ 
+    and then remove directory by using command :
+    rm -rf directory/.
 
 : 복사할때 파일의 소유자,그룹자,권한,시간정보등이 그대로 복사
 > cp -rp /home /home2    
