@@ -29,3 +29,13 @@ or,
     echo $변수명    ▶  변수명에 해당하는 환경변수값을 보여준다.
     export 변수명=$변수명:변수값    ▶  변수명에 변수값을 추가한다 
 
+5.
+To switch between installed java versions, use the update-java-alternatives command.
+
+List all java versions:
+   update-java-alternatives --list
+   
+Set java version as default (needs root permissions):
+   sudo update-java-alternatives --set /path/to/java
+   
+   
