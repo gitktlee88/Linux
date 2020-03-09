@@ -6,6 +6,13 @@
 > ps $$  or  echo $0  ,   ( uname –a ) ,   ( uname –r ),  ( cat /etc/issue )
 
 > df -h    : to see file system
+> lsblk
+
+@ /tmp is supposed to be cleaned up on reboot, but if you don't reboot (which is normal for servers), 
+  clean up will not happen.
+>>> find /tmp -ctime +10 -exec rm -rf {} +
+    will delete all files and folders older than 10 days. 
+
 > ps -ef | grep httpd ( jboss, tomcat, ... )
 
 - find 커맨드는 기본적으로 하위 폴더들을 재귀(recursive) 탐색하기 때문에 가장 상위 폴더의 경로를 써주기만 해도 
