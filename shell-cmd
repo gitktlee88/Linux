@@ -6,6 +6,7 @@
 > ps $$  or  echo $0  ,   ( uname –a ) ,   ( uname –r ),  ( cat /etc/issue )
 
 > df -h    : to see file system
+> df -h | grep tmpfs
 > lsblk
 
 @ /tmp is supposed to be cleaned up on reboot, but if you don't reboot (which is normal for servers), 
