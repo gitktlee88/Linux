@@ -124,10 +124,8 @@ ex3)
     star_meaning      ---/   star_id    /               star_meaning
     user_id  (fk)
     
-    
-    
-    
-    
+   
+   
 - Data Warehousing? -
 
 A data warehouse is a copy of transaction data specifically structured for query and analysis. 
@@ -136,7 +134,28 @@ The purpose of D/W is to provide 'aggregate data' which is suitable for 'decisio
 
 
 
-                <  SQL Commands >
+- Sharding  vs  Partitioning
+
+'Partitioning' is more a generic term for dividing data across tables or databases. 
+
+'Sharding' is one specific type of partitioning, part of what is called 'horizontal partitioning'.
+
+Sharding is the process of storing data records across multiple machines. 
+                  (MongoDB’s approach to meeting the demands of data growth.)
+    
+    As the size of the data increases, a single machine may not be sufficient to store the data 
+    nor provide an acceptable 'read/write throughput'. 
+    
+    Sharding solves the problem with horizontal scaling. 
+    
+    With sharding, you add more machines to support data growth and the demands of 
+    read and write operations.
+    
+-----------------
+
+
+
+<  SQL Commands >
 
    DDL          DML         DCL        TCL       Constraints
 definition  manipulation  control  transaction
@@ -158,14 +177,18 @@ or
 > show databases;
 > use mysql;
 > show tables;
+
+To check if employee table is already created
+> "SELECT 1 FROM emp_db.employee LIMIT 1;"
 +--------+---------+-------+--------+---------+--------+
 
-> CREATE TABLE employee (emp_id INT, fname VARCHAR(25),
-lname VARCHAR(25), gender CHAR, dept_id INT, salary INT,
-PRIMARY KEY(emp_id)
+> CREATE DATABASE IF NOT EXISTS %s" % ('emp_db');    
+    
+> CREATE TABLE IF NOT EXISTS employee (emp_id INT, fname VARCHAR(25),
+lname VARCHAR(25), gender CHAR, dept_id INT, salary INT, PRIMARY KEY(emp_id)
 );
 
-> CREATE TABLE department(id INT AUTO_INCREMENT PRIMARY KEY,
+> CREATE TABLE IF NOT EXISTS department(id INT AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(25));
 
 > DESCRIBE employee;
