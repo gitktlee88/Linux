@@ -266,32 +266,37 @@ GROUP BY dept_id
 ORDER BY AVG(salary) DESC;
 
 /* return employee record with max salary */
+
 SELECT *
 FROM employee
 WHERE salary = (select Max(salary) from employee);
 
 /* select the highest salary in employee */
+
 SELECT Max(salary)
 FROM employee;
 
 /* select 2nd highest salary in employee */
+
 SELECT Max(salary)
 FROM employee
 WHERE salary Not In (select Max(salary) from employee);
 
 /* select range of employee based on id */
+
 SELECT *
 FROM employee
 Where emp_id between 2004 and 2007;
 
 /* return employee name, highest salary and department */
+
 SELECT e.fname, e.lname, e.salary, d.dept_name
 FROM employee e Inner Join department d
 ON (e.dept_id = d.dept_id)
 where salary IN (select Max(salary) from employee);
 
-/* return employee name, highest salary and department
-   for each department*/
+/* return employee name, highest salary and department for each department*/
+
 SELECT e.fname, e.lname, e.salary, d.dept_name
 FROM employee e Inner Join department d
 ON (e.dept_id = d.dept_id)
