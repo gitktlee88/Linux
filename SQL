@@ -75,24 +75,65 @@ from emp;
 => Table renamed. 
 --------------------------
 
+
 - Normalization? -
+
 It is a systematic approach of decomposing tables to eliminate data
 redundancy(repetition) and undesirable characteristics
 like Insertion, Update and Deletion Anomalies.
 
 1NF: - to avoid redundancy by breaking down the table.
-    - to be Atomic like User table.
-         user_id, fn, ln, email, address
+    - User table which is not Atomic.
+ex1)     
+        user_id,  fn  ,     ln   ,        email          , address
+        5            KT     LEE     abc@xx.com     5, sandal road, new malden, surrey KT3...      
+ex2)              
+        user_id,     fn  ,     ln   ,        email       
+        5            KT       LEE          abc@xx.com
+                                           xyz@yy.com 
+ex3)                 
+        user_id,  fn  ,     ln   ,        email       
+        5            KT     LEE     abc@xx.com
+        5            KT     LEE     abc@xx.com               
+            
+    - to be Atomic you need to split User table.
+      create email, address tables which has multiple columns.
+    
+    <User>                                                      <Email>
+    user_id  (pk)                                              email_id  (pk)
+    fn                                                         email
+    ln                                                         user_id    (fk)
 
 2NF: - (should be in 1NF) and to remove partial dependency with composit keys.
 
+    <Author>                        <Book_author>                        <Book>
+    author_id  (pk)                book_id  (fk)                         book_id  (pk)
+    fn                             author_id   (fk)          ----->      isbn
+    ln                             author_position          /
+    birthdate                      isbn (x)       ----------
+        
+        
 3NF: - (should be in 1NF, 2NF) and to remove transitive dependency.
-    - it simplyfy the queries.
+    - A transitive dependency in a database is an indirect relationship 
+    between values in the same table that causes a functional dependency.
 
+    <Review>
+    review_id  (pk)                        ----->       <Star>
+    review                                /             star_id  (pk)
+    star              ---\               /              star
+    star_meaning      ---/   star_id    /               star_meaning
+    user_id  (fk)
+    
+    
+    
+    
+    
 - Data Warehousing? -
-A data warehouse is a copy of transaction data specifically structured
-for query and analysis. The purpose of database warehousing is to provide aggregate data 
-which is suitable for decision making.
+
+A data warehouse is a copy of transaction data specifically structured for query and analysis. 
+
+The purpose of D/W is to provide 'aggregate data' which is suitable for 'decision making'.
+
 
 
                 <  SQL Commands >
