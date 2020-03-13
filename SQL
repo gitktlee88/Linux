@@ -178,7 +178,7 @@ or
 > use mysql;
 > show tables;
 
-To check if employee table is already created
+To check if employee table is not empty?
 > "SELECT 1 FROM emp_db.employee LIMIT 1;"
 +--------+---------+-------+--------+---------+--------+
 
