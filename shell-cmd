@@ -62,6 +62,8 @@ if you want to be more eloquent, will empty logfile (actually they will truncate
 > head -n 20 test      : first 20 lines, <-c> 20 characters
 > tail -n 20 test      : last 20 lines, <-c> 20 characters
 
-cat test.txt | tr '[:upper:]' '[:lower:]'    to convert  to lowercase in the test.txt file.
+> cat test.txt | tr '[:upper:]' '[:lower:]'    to convert  to lowercase in the test.txt file.
 
 
+command to get list of all installed software: <Ubuntu Linux>
+# sudo dpkg --get-selections
