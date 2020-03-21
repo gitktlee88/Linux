@@ -67,3 +67,13 @@ if you want to be more eloquent, will empty logfile (actually they will truncate
 
 command to get list of all installed software: <Ubuntu Linux>
 # sudo dpkg --get-selections
+
+virtualbox shared folder permissions
+# sudo adduser tigerkt vboxsf
+  then, reboot Guest OS.
+
+copy a file from terminal to Desktop
+# CP ./afilename ~/Desktop/
+
+
+
