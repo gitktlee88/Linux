@@ -3,3 +3,16 @@ robocopy C:\Windows\Installer D:\Windows\Installer /MOVE /e
 
 <> create a "Junction" link for the missing folder:
 mklink /J C:\Windows\Installer D:\Windows\Installer
+
+<> Using FileZilla to transfer data
+Firstly, go to ‘https://filezilla-project.org/‘ and click “Download FileZilla Client” button to download it.
+https://angus.readthedocs.io/en/2014/amazon/transfer-files-between-instance.html
+
+<> Rufus  (https://rufus.ie/)
+Rufus is a small utility that helps format and create bootable USB flash drives, 
+such as USB keys/pendrives, memory sticks, etc.
+
+<> AOMEI Partition Manager
+AOMEI Partition Assistant Standard is FREE disk partition management software. 
+It comes with so many powerful features that allows you to completely control your hard disk 
+and partitions. ... AOMEI Partition Assistant embeds sector-level data protection technology.
